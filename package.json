@@ -12,7 +12,7 @@
     "test:cov": "run-s lint jest:cov",
     "lint": "eslint 'src/**/*.ts'",
     "format": "prettier --write .",
-    "jest": "jest --detectOpenHandles --forceExit",
+    "jest": "jest --forceExit",
     "jest:cov": "npm run jest -- --coverage",
     "prepublishOnly": "npm run build",
     "prepare": "husky install",
@@ -53,7 +53,7 @@
   "jest": {
     "preset": "ts-jest",
     "collectCoverageFrom": [
-      "src/**/*.ts"
+      "src/index.ts"
     ]
   },
   "lint-staged": {

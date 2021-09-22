@@ -26,6 +26,7 @@ export type StatusValue =
   HealthCheckResponse.ServingStatusMap[keyof HealthCheckResponse.ServingStatusMap]
 export type StatusMap = Record<string, StatusValue>
 
+// HealthImplementation implements `service Health`
 export class HealthImplementation extends BaseService implements IHealthServer {
   private isShutdown = false
   private _statusMap: StatusMap
@@ -44,6 +45,8 @@ export class HealthImplementation extends BaseService implements IHealthServer {
     }
   }
 
+  // setStatus is called when need to reset the serving status of a service
+  // or insert a new service entry into the statusMap.
   setStatus(service: string, status: StatusValue) {
     if (this.isShutdown) {
       return
@@ -53,20 +56,31 @@ export class HealthImplementation extends BaseService implements IHealthServer {
     this.dispatchNewStatus(service, status)
   }
 
+  // Shutdown sets all serving status to NOT_SERVING, and configures the server to
+  // ignore all future status changes.
+  //
+  // This changes serving status for all services. To set status for a particular
+  // services, call setStatus().
   shutdown() {
-    ;[...this.watchClientsMap.keys()].map((service) =>
+    ;[...Object.keys(this._statusMap)].map((service) =>
       this.setStatus(service, HealthCheckResponse.ServingStatus.NOT_SERVING)
     )
     this.isShutdown = true
   }
 
+  // Resume sets all serving status to SERVING, and configures the server to
+  // accept all future status changes.
+  //
+  // This changes serving status for all services. To set status for a particular
+  // services, call setStatus().
   resume() {
     this.isShutdown = false
-    ;[...this.watchClientsMap.keys()].map((service) =>
+    ;[...Object.keys(this._statusMap)].map((service) =>
       this.setStatus(service, HealthCheckResponse.ServingStatus.SERVING)
     )
   }
 
+  // Check implements `service Health`.
   check(
     call: ServerUnaryCall<HealthCheckRequest, HealthCheckResponse>,
     callback: sendUnaryData<HealthCheckResponse>
@@ -79,6 +93,7 @@ export class HealthImplementation extends BaseService implements IHealthServer {
     callback(null, this.responseForStatus(status))
   }
 
+  // Watch implements `service Health`.
   watch(call: ServerWritableStream<HealthCheckRequest, HealthCheckResponse>) {
     const service = call.request.getService()
 
