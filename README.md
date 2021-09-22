@@ -1,17 +1,17 @@
-# **package_name**
+# node-grpc-health-check
 
-<!-- [![NPM version](https://img.shields.io/npm/v/@zcong/**package_name**.svg?style=flat)](https://npmjs.com/package/@zcong/**package_name**) -->
-<!-- [![NPM downloads](https://img.shields.io/npm/dm/@zcong/**package_name**.svg?style=flat)](https://npmjs.com/package/@zcong/**package_name**) -->
-<!-- [![codecov](https://codecov.io/gh/zcong1993/**package_name**/branch/master/graph/badge.svg)](https://codecov.io/gh/zcong1993/**package_name**) -->
+<!-- [![NPM version](https://img.shields.io/npm/v/@zcong/node-grpc-health-check.svg?style=flat)](https://npmjs.com/package/@zcong/node-grpc-health-check) -->
+<!-- [![NPM downloads](https://img.shields.io/npm/dm/@zcong/node-grpc-health-check.svg?style=flat)](https://npmjs.com/package/@zcong/node-grpc-health-check) -->
+<!-- [![codecov](https://codecov.io/gh/zcong1993/node-grpc-health-check/branch/master/graph/badge.svg)](https://codecov.io/gh/zcong1993/node-grpc-health-check) -->
 
 > my cool project
 
 ## Install
 
 ```bash
-$ yarn add @zcong/**package_name**
+$ yarn add @zcong/node-grpc-health-check
 # or npm
-$ npm i @zcong/**package_name** --save
+$ npm i @zcong/node-grpc-health-check --save
 ```
 
 ## License

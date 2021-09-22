@@ -3,3 +3,6 @@ yarn.lock
 .husky
 .*
 pnpm-lock.yaml
+./src/generated
+*.sh
+*.proto

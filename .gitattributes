@@ -3,3 +3,5 @@
 .husky/* linguist-vendored
 ship.config.js linguist-vendored
 scripts/* linguist-vendored
+src/generated/* linguist-vendored
+gen.sh linguist-vendored
