@@ -1,7 +1,7 @@
 {
   "name": "@zcong/node-grpc-health-check",
   "version": "0.1.0",
-  "description": "my cool project",
+  "description": "Health check client and service for use with @grpc/grpc-js.",
   "main": "./dist/index.js",
   "files": [
     "dist"
