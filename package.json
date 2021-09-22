@@ -7,7 +7,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc --build tsconfig.json",
+    "build": "tsc --build tsconfig.json && cp -a ./src/generated ./dist/",
     "test": "run-s lint jest",
     "test:cov": "run-s lint jest:cov",
     "lint": "eslint 'src/**/*.ts'",

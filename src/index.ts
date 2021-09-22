@@ -16,6 +16,7 @@ export * as messages from './generated/health_pb'
 
 export const Client = HealthClient
 export const service = HealthService
+export const ServingStatus = HealthCheckResponse.ServingStatus
 
 class BaseService implements UntypedServiceImplementation {
   [name: string]: any
@@ -98,7 +99,9 @@ export class HealthImplementation extends BaseService implements IHealthServer {
 
     serviceClientMap.set(call, status)
 
-    call.on('close', () => serviceClientMap.delete(call))
+    call.once('cancelled', () => {
+      serviceClientMap.delete(call)
+    })
   }
 
   private dispatchNewStatus(service: string, status: StatusValue) {
