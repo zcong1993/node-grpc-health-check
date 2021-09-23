@@ -5,6 +5,8 @@ import {
   status as grpcStatus,
   UntypedServiceImplementation,
 } from '@grpc/grpc-js'
+import * as logging from '@grpc/grpc-js/build/src/logging'
+import { LogVerbosity } from '@grpc/grpc-js/build/src/constants'
 import {
   IHealthServer,
   HealthClient,
@@ -49,6 +51,10 @@ export class HealthImplementation extends BaseService implements IHealthServer {
   // or insert a new service entry into the statusMap.
   setStatus(service: string, status: StatusValue) {
     if (this.isShutdown) {
+      logging.log(
+        LogVerbosity.INFO,
+        `health: status changing for ${service} to ${status} is ignored because health service is shutdown`
+      )
       return
     }
 
