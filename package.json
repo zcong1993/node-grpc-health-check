@@ -70,5 +70,10 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zcong1993/node-grpc-health-check.git"
-  }
+  },
+  "keywords": [
+    "grpc",
+    "grpc-node",
+    "grpc-health"
+  ]
 }
